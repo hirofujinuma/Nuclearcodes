@@ -1,66 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Random Nuclear Code Generator</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin-top: 100px;
-            background-color: #111;
-            color: white;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Code Generator Terminal</title>
 
-        input {
-            padding: 10px;
-            width: 250px;
-            font-size: 16px;
-        }
+<style>
+body{
+    background:#000;
+    color:#00ff41;
+    font-family:Consolas, monospace;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    margin:0;
+}
 
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-            margin-left: 10px;
-            cursor: pointer;
-        }
+.terminal{
+    width:90%;
+    max-width:700px;
+    border:2px solid #00ff41;
+    padding:25px;
+    box-shadow:0 0 20px #00ff41;
+}
 
-        #output {
-            margin-top: 30px;
-            font-size: 24px;
-            color: #00ff88;
-        }
-    </style>
+h1{
+    text-align:center;
+    text-shadow:0 0 10px #00ff41;
+}
+
+select,button{
+    width:100%;
+    padding:12px;
+    margin-top:10px;
+    background:black;
+    color:#00ff41;
+    border:1px solid #00ff41;
+    font-family:Consolas, monospace;
+    font-size:16px;
+}
+
+button:hover{
+    cursor:pointer;
+    box-shadow:0 0 10px #00ff41;
+}
+
+#output{
+    margin-top:20px;
+    white-space:pre-line;
+    font-size:18px;
+}
+
+.blink{
+    animation:blink 1s infinite;
+}
+
+@keyframes blink{
+    50%{opacity:0;}
+}
+</style>
 </head>
+
 <body>
 
-    <h1>Random Nuclear Code Generator</h1>
+<div class="terminal">
+    <h1>SECURE TERMINAL</h1>
 
-    <input type="text" id="country" placeholder="Enter Country Name">
-    <button onclick="generateCode()">Generate</button>
+    <select id="country">
+        <option>United States</option>
+        <option>Russia</option>
+        <option>China</option>
+        <option>India</option>
+        <option>Pakistan</option>
+        <option>United Kingdom</option>
+        <option>France</option>
+        <option>North Korea</option>
+        <option>Israel</option>
+    </select>
 
-    <div id="output"></div>
+    <button onclick="generateCode()">GENERATE</button>
 
-    <script>
-        function generateCode() {
-            const country = document.getElementById("country").value.trim();
+    <div id="output">
+        > Awaiting command...
+    </div>
+</div>
 
-            if (!country) {
-                alert("Please enter a country name.");
-                return;
-            }
+<script>
+function generateCode(){
 
-            const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            let code = "";
+    const country =
+        document.getElementById("country").value;
 
-            for (let i = 0; i < 12; i++) {
-                code += chars.charAt(Math.floor(Math.random() * chars.length));
-            }
+    const chars =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
-            document.getElementById("output").innerHTML =
-                `<strong>${country}</strong><br>Code: ${code}`;
-        }
-    </script>
+    let code = "";
+
+    for(let i=0;i<12;i++){
+        code += chars.charAt(
+            Math.floor(Math.random()*chars.length)
+        );
+    }
+
+    document.getElementById("output").innerHTML =
+`> Connecting...
+> Verifying credentials...
+> ACCESS GRANTED
+
+Country: ${country}
+
+Generated Code:
+${code}
+
+<span class="blink">█</span>`;
+}
+</script>
 
 </body>
 </html>
