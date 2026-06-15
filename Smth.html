@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Random Nuclear Code Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 100px;
+            background-color: #111;
+            color: white;
+        }
+
+        input {
+            padding: 10px;
+            width: 250px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        #output {
+            margin-top: 30px;
+            font-size: 24px;
+            color: #00ff88;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Random Nuclear Code Generator</h1>
+
+    <input type="text" id="country" placeholder="Enter Country Name">
+    <button onclick="generateCode()">Generate</button>
+
+    <div id="output"></div>
+
+    <script>
+        function generateCode() {
+            const country = document.getElementById("country").value.trim();
+
+            if (!country) {
+                alert("Please enter a country name.");
+                return;
+            }
+
+            const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            let code = "";
+
+            for (let i = 0; i < 12; i++) {
+                code += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+
+            document.getElementById("output").innerHTML =
+                `<strong>${country}</strong><br>Code: ${code}`;
+        }
+    </script>
+
+</body>
+</html>
