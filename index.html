@@ -89,6 +89,25 @@ button:hover{
 <script>
 function generateCode(){
 
+    const lastGenerated =
+        localStorage.getItem("lastGenerated");
+
+    const THIRTY_DAYS =
+        30 * 24 * 60 * 60 * 1000;
+
+    if(lastGenerated &&
+       Date.now() - Number(lastGenerated) < THIRTY_DAYS){
+
+        document.getElementById("output").innerHTML =
+`> ACCESS DENIED
+
+You must wait 30 days before generating another code.
+
+<span class="blink">█</span>`;
+
+        return;
+    }
+
     const country =
         document.getElementById("country").value;
 
@@ -103,6 +122,11 @@ function generateCode(){
         );
     }
 
+    localStorage.setItem(
+        "lastGenerated",
+        Date.now()
+    );
+
     document.getElementById("output").innerHTML =
 `> Connecting...
 > Verifying credentials...
@@ -115,6 +139,7 @@ ${code}
 
 <span class="blink">█</span>`;
 }
+
 </script>
 
 </body>
